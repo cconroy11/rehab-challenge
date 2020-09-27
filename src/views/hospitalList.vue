@@ -1,6 +1,6 @@
 <template>
-  <v-row>
-    <v-col v-for="(hospital, index) in hospitals" :key="index" cols="12" sm="6" md="4" lg="3">
+  <v-row class="site-content">
+    <v-col v-for="(hospital, index) in hospitals" :key="index" cols="12" sm="6" md="4">
       <hospital :hospital="hospital" @refreshData="refreshList()" />
     </v-col>
     <add-hospital @refreshData="refreshList()" />
@@ -47,4 +47,7 @@ export default {
 </script>
  
 <style>
+.site-content {
+  margin-top: 20px;
+}
 </style>

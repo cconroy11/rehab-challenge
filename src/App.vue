@@ -2,8 +2,8 @@
   <div id="app">
     <v-app>
       <v-main>
-        <v-toolbar class="site-header">
-          Hospital Management
+        <v-toolbar dark class="primary site-header" color="darken-2">
+          <v-icon large class="mr-2" color="">mdi-hospital-building</v-icon><span class="site-title">Hospital Management</span>
           <v-spacer></v-spacer>
           <router-link v-if="!currentUser" to="/login" class="nav-link">
             <v-btn icon>
@@ -14,7 +14,7 @@
             <v-icon>mdi-account-arrow-left</v-icon>
           </v-btn>
         </v-toolbar>
-        <v-container class="site-content">
+        <v-container>
           <router-view />
         </v-container>
       </v-main>
@@ -37,7 +37,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
+
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+
 .nav-link {
   text-decoration: none;
 }
@@ -45,8 +48,13 @@ export default {
   position: fixed;
   z-index: 200;
   width: 100%;
-}
-.site-content {
-  margin-top: 64px;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  @media (max-width: 500px) {
+    .site-title{
+      display: none;
+    }
+  }
 }
 </style>

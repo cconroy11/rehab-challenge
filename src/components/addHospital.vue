@@ -14,9 +14,7 @@
       </v-btn>
     </template>
     <v-card>
-      <v-card-title>
-        <span class="headline">Hospital Info</span>
-      </v-card-title>
+      <v-card-title class="py-2 hospital-title blue darken-1">Hospital Info</v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
@@ -48,6 +46,35 @@
                 required
                 outlined
               ></v-text-field>
+              <v-row>
+                <v-col class="pt-0" cols="5">
+                  <v-text-field
+                    v-model="hospital.city"
+                    label="City"
+                    :rules="cityRules"
+                    required
+                    outlined
+                  ></v-text-field>
+                </v-col>
+                <v-col class="pt-0" cols="3">
+                  <v-text-field
+                    v-model="hospital.state"
+                    label="State"
+                    :rules="stateRules"
+                    required
+                    outlined
+                  ></v-text-field>
+                </v-col>
+                <v-col class="pt-0" cols="4">
+                  <v-text-field
+                    v-model="hospital.zip"
+                    label="Zip"
+                    :rules="zipRules"
+                    required
+                    outlined
+                  ></v-text-field>
+                </v-col>
+              </v-row>
             </v-form>
           </v-row>
         </v-container>
@@ -77,7 +104,10 @@ export default {
       hospital: {
         name: "",
         phone_number: "",
-        address: ""
+        address: "",
+        city: "",
+        state: "",
+        zip: ""
       },
       valid: false,
       nameRules: [
@@ -85,11 +115,23 @@ export default {
       ],
       phoneRules: [
         v => !!v || 'Phone Number is required',
-        v => v.length <= 11 || 'Number must be less than 12 characters',
+        v => v.length == 10 || 'Number must be 10 characters',
         v => Number.isInteger(Number(v)) || "Must be numbers"
       ],
       addressRules: [
         v => !!v || 'Address is required',
+      ],
+      cityRules: [
+        v => !!v || 'City is required',
+      ],
+      stateRules: [
+        v => !!v || 'State is required',
+        v => v.length == 2 || 'State must be 2 characters',
+      ],
+      zipRules: [
+        v => !!v || 'Zip is required',
+        v => v.length == 5 || 'zip must be 5 characters',
+        v => Number.isInteger(Number(v)) || "Must be numbers"
       ],
     };
   },
@@ -107,7 +149,10 @@ export default {
       var data = {
         name: this.hospital.name,
         phone_number: this.hospital.phone_number,
-        address: this.hospital.address
+        address: this.hospital.address,
+        city: this.hospital.city,
+        state: this.hospital.state,
+        zip: this.hospital.zip
       };
  
       await axios
@@ -129,7 +174,10 @@ export default {
       this.hospital = {
         name: "",
         phone_number: "",
-        address: ""
+        address: "",
+        city: "",
+        state: "",
+        zip: ""
       };
     }
   }
@@ -137,7 +185,13 @@ export default {
 };
 </script>
  
-<style>
+<style scoped>
+::v-deep .hospital-title {
+  font-family: 'Oxygen', sans-serif;
+  color: #fff;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+}
 .add-btn {
   z-index: 9999;
 }
