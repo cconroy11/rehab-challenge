@@ -1,7 +1,7 @@
 <template>
   <div>
-    <router-back />
     <v-row class="site-content">
+      <router-back />
       <v-col cols="12">
         <hospital-detail :hospital="hospital" />
       </v-col>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="site-content">
     <router-back />
     <v-row align="center" justify="center">
       <v-col class="mt-5" cols="10" sm="8" md="4">
