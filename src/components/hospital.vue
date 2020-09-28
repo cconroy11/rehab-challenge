@@ -2,15 +2,20 @@
   <v-card
     class="mx-auto"
   >
-  <v-card-title class="primary py-2 hospital-title">{{ hospital.name }}</v-card-title>
+  <router-link class="detail-link" :to="{
+    name: 'hospital-details',
+    params: { hospital: hospital, id: hospital.id }
+  }">
+    <v-card-title class="primary py-2 hospital-title">{{ hospital.name }}</v-card-title>
 
-  <v-card-text class="py-4 hospital-body">
-    <div class="item mb-3"><v-icon left>mdi-phone</v-icon>{{ formattedPhoneNumber }}</div>
-    <div class="item"><v-icon left>mdi-map-marker</v-icon>
-      {{ hospital.address }} <br>
-      {{ hospital.city }}, {{ hospital.state }} {{ hospital.zip }}
-    </div>
-  </v-card-text>
+    <v-card-text class="py-4 hospital-body">
+      <div class="item mb-3"><v-icon left>mdi-phone</v-icon>{{ formattedPhoneNumber }}</div>
+      <div class="item"><v-icon left>mdi-map-marker</v-icon>
+        {{ hospital.address }} <br>
+        {{ hospital.city }}, {{ hospital.state }} {{ hospital.zip }}
+      </div>
+    </v-card-text>
+  </router-link>
 
   <v-divider class="mx-4"></v-divider>
 
@@ -89,6 +94,15 @@ export default {
       font-size: 15px;
       letter-spacing: 0.75px;
       color: #444;
+    }
+  }
+  .detail-link {
+    text-decoration: none;
+    position: relative;
+    transition: all ease 0.3s;
+    top: 0;
+    &:hover {
+      top:-5px;
     }
   }
 </style>

@@ -9,7 +9,7 @@
             label="Username"
             name="username"
             prepend-icon="mdi-account"
-            :error-messages="error"
+            :error-messages="message.userMessage"
             required
             type="text"
           />
@@ -18,6 +18,7 @@
             label="Password"
             name="password"
             prepend-icon="mdi-lock"
+            :error-messages="message.passMessage"
             required
             type="password"
           />
@@ -44,7 +45,6 @@ export default {
       user: new User('', ''),
       loading: false,
       message: '',
-      error: ''
     };
   },
   computed: {
@@ -55,27 +55,20 @@ export default {
   methods: {
     handleLogin() {
       this.loading = true;
-      this.$validator.validateAll().then(isValid => {
-        if (!isValid) {
-          this.loading = false;
-          return;
-        }
-
-        if (this.user.username && this.user.password) {
-            this.$store.dispatch('auth/login', this.user).then(
-            () => {
-              this.$router.push('/');
-            },
-            error => {
-              this.loading = false;
-              this.message =
-                (error.response && error.response.data) ||
-                error.message ||
-                error.toString();
-            }
-          );
-        }
-      });
+      if (this.user.username && this.user.password) {
+          this.$store.dispatch('auth/login', this.user).then(
+          () => {
+            this.$router.push('/');
+          },
+          error => {
+            this.loading = false;
+            this.message =
+              (error.response && error.response.data) ||
+              error.message ||
+              error.toString();
+          }
+        );
+      }
     }
   }
 };
