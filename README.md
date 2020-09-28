@@ -5,6 +5,16 @@
 npm install
 ```
 
+## Create .env in directory
+```
+touch .env
+```
+
+## Fill .env with neccesary values
+```
+VUE_APP_API = 'http://localhost:8080/api/'
+```
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
@@ -14,11 +24,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
